@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Military
 {
-    class Warship : Vehicle
+    class Amfibia : Vehicle
     {
-        public Warship(Guid id, double weight, double averageSpeed) : base(id, weight, averageSpeed)
+        public Amfibia(Guid id, double weight, double averageSpeed) : base(id, weight, averageSpeed)
         {
-            Capacity = 50;
-            FuelConsumption = 200;
+            Capacity = 20;
+            FuelConsumption = 70;
         }
 
         public override void Print()
