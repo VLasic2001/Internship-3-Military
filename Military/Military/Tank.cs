@@ -1,21 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Military
 {
     public class Tank : Vehicle, IDriveable
     {
+        public double TotalFuelConsumption { get; set; }
+
         public Tank(double weight, int averageSpeed) : base(weight, averageSpeed)
         {
             Capacity = 6;
-            FuelConsumption = 30;
+            FuelConsumption = 30; 
         }
 
-        public void Print(int soldierAmount, int tankDistance)
+        public string Print(int soldierAmount, int tankDistance)
         {
-            Console.WriteLine($"Total fuel used: {Move(soldierAmount, tankDistance)*FuelConsumption}");
+
+            TotalFuelConsumption = Move(soldierAmount, tankDistance) * FuelConsumption / 100;
+
+            return base.Print() + $"total fuel used: {TotalFuelConsumption}.";
         }
 
         public double Move(int soldierAmount, int landDistance)

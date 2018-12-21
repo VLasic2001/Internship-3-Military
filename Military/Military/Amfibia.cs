@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Military
 {
-    class Amfibia : Vehicle, IDriveable, ISwimmable
+    public class Amfibia : Vehicle, IDriveable, ISwimmable
     {
+        public double TotalFuelConsumption { get; set; }
+
         public Amfibia(double weight, int averageSpeed) : base(weight, averageSpeed)
         {
             Capacity = 20;
             FuelConsumption = 70;
         }
 
-        public void Print(int soldierAmount, int landDistance, int waterDistance)
+        public string Print(int soldierAmount, int amfibiaLandDistance, int amfibiaWaterDistance)
         {
-            Console.WriteLine($"total fuel used: {(Move(soldierAmount, landDistance)+Swim(soldierAmount, waterDistance))*FuelConsumption}");
+            TotalFuelConsumption = (Move(soldierAmount, amfibiaLandDistance) + Swim(soldierAmount, amfibiaWaterDistance)) * FuelConsumption / 100;
+
+            return base.Print() + $"total fuel used: {TotalFuelConsumption}";
         }
 
         public double Move(int soldierAmount, int landDistance)

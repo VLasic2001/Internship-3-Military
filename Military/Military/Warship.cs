@@ -1,20 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Military
 {
-    class Warship : Vehicle, ISwimmable
+    public class Warship : Vehicle, ISwimmable
     {
+        public double TotalFuelConsumption { get; set; }
+
         public Warship(double weight, int averageSpeed) : base(weight, averageSpeed)
         {
             Capacity = 50;
             FuelConsumption = 200;
         }
 
-        public override void Print()
+        public string Print(int soldierAmount, int warshipDistance)
         {
-            Console.WriteLine($"total fuel used: ");
+
+            TotalFuelConsumption = Swim(soldierAmount, warshipDistance) * FuelConsumption / 100;
+
+            return base.Print() + $"total fuel used: {TotalFuelConsumption}";
         }
 
         public double Swim(int soldierAmount, int waterDistance)
