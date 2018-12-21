@@ -8,20 +8,27 @@ namespace Military
     {
         public Guid Id { get; set; }
         public double Weight { get; set; }
-        public double AverageSpeed { get; set; }
+        public int AverageSpeed { get; set; }
         public static int FuelConsumption { get; set; }
         public static int Capacity { get; set; }
 
-        public Vehicle(Guid id, double weight, double averageSpeed)
+        public Vehicle(double weight, int averageSpeed)
         {
-            Id = id;
+            Id = Guid.NewGuid();
             Weight = weight;
             AverageSpeed = averageSpeed;
         }
 
         public virtual void Print()
         {
-            Console.WriteLine($"Id: {Id}, weight: {Weight}, average speed: {AverageSpeed},fuel consumption: {FuelConsumption}, capcaity: {Capacity}, ");
+            Console.Write($"Id: {Id}, weight: {Weight}, average speed: {AverageSpeed}, fuel consumption: {FuelConsumption}, capacity: {Capacity}, ");
         }
+
+        public int AmountOfTrips(double soldierAmount)
+        {
+            return (int)Math.Ceiling(soldierAmount / Capacity) * 2 - 1;
+        }
+
+
     }
 }
