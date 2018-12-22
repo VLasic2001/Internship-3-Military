@@ -1,4 +1,5 @@
 ﻿using System;
+using Military.Classes;
 
 namespace Military
 {
@@ -17,15 +18,17 @@ namespace Military
             Console.WriteLine("Enter number of soldiers: ");
             var soldierAmount = int.Parse(Console.ReadLine());
 
-            var tank = new Tank(600, 30);
-            var warship = new Warship(1000, 20);
-            var amfibia = new Amfibia(400, 150);
+            var simulationTank = new Tank(62000, 30);
+            var simulationWarship = new Warship(35000, 100);
+            var simulationAmfibia = new Amfibia(29100, 40);
+            TripSetup.SetupTank(ref simulationTank, soldierAmount, tankDistance);
+            TripSetup.SetupWarship(ref simulationWarship, soldierAmount, warshipDistance);
+            TripSetup.SetupAmfibia(ref simulationAmfibia, soldierAmount, amfibiaLandDistance, amfibiaWaterDistance);
+            Console.WriteLine(simulationTank.ToString());
+            Console.WriteLine(simulationWarship.ToString());
+            Console.WriteLine(simulationAmfibia.ToString());
 
-            Console.WriteLine(tank.Print(soldierAmount, tankDistance));
-            Console.WriteLine(warship.Print(soldierAmount, warshipDistance));
-            Console.WriteLine(amfibia.Print(soldierAmount, amfibiaLandDistance, amfibiaWaterDistance));
-
-            Console.WriteLine(OptimalVehicle.OptimalVehicleCalculator(tank, warship, amfibia));
+            Console.WriteLine(OptimalVehicle.OptimalVehicleCalculator(simulationTank, simulationWarship, simulationAmfibia));
         }
     }
 }

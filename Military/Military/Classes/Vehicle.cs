@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Military
+namespace Military.Classes
 {
-    public class Vehicle
+    public abstract class Vehicle
     {
         public Guid Id { get; set; }
         public double Weight { get; set; }
@@ -10,16 +10,21 @@ namespace Military
         public int FuelConsumption { get; set; }
         public int Capacity { get; set; }
 
-        public Vehicle(double weight, int averageSpeed)
+        protected Vehicle(double weight, int averageSpeed)
         {
             Id = Guid.NewGuid();
             Weight = weight;
             AverageSpeed = averageSpeed;
         }
 
-        public string Print()
+        public override string ToString()
         {
-            return $"\n Id: {Id}, weight: {Weight}, average speed: {AverageSpeed}, fuel consumption: {FuelConsumption}, capacity: {Capacity}, ";
+            return "\n" +
+                   $"Id: {Id},\n" +
+                   $"weight: {Weight}kg,\n" +
+                   $"average speed: {AverageSpeed}km/h,\n" +
+                   $"fuel consumption: {FuelConsumption}L/100km\n" +
+                   $"capacity: {Capacity},\n";
         }
 
         public int AmountOfTrips(double soldierAmount)

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Military
+namespace Military.Classes
 {
     public static class RandomNumber
     {
